@@ -1,5 +1,5 @@
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { messageState } from './state';
+import { messageState, useMessagesValue, useSetMessages } from './state';
 import { useNuiEvent, useNuiRequest } from 'fivem-nui-react-lib';
 import { IAlert, useSnackbar } from '../../../ui/hooks/useSnackbar';
 import { useTranslation } from 'react-i18next';
@@ -15,8 +15,9 @@ export const useMessagesService = () => {
   const [activeMessageGroup, setActiveMessageGroup] = useRecoilState(
     messageState.activeMessageGroup,
   );
+  const messages = useMessagesValue();
   const setMessageGroups = useSetRecoilState(messageState.messageGroups);
-  const setMessages = useSetRecoilState(messageState.messages);
+  const setMessages = useSetMessages();
   const setCreateMessageGroupResult = useSetRecoilState(messageState.createMessageGroupResult);
   const { addAlert } = useSnackbar();
   const { setNotification } = useMessageNotifications();
@@ -56,6 +57,20 @@ export const useMessagesService = () => {
       setMessageGroups(groups);
     },
     [activeMessageGroup, setActiveMessageGroup, setMessageGroups],
+  );
+
+  const deleteMessage = useCallback(
+    (msgId: number) => {
+      setMessages((curMsgs) => {
+        const targetIdx = curMsgs.findIndex((msg) => msg.id === msgId);
+
+        if (targetIdx === -1)
+          throw new Error(`Message with id ${msgId} was not found in messages for deletion`);
+
+        return curMsgs.slice(targetIdx, 1);
+      });
+    },
+    [setMessages],
   );
 
   useNuiEvent('MESSAGES', MessageEvents.FETCH_MESSAGE_GROUPS_SUCCESS, _setMessageGroups);
