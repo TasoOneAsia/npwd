@@ -31,7 +31,7 @@
     "@sentry/integrations": "^6.10.0",
     "@sentry/webpack-plugin": "^1.16.0",
     "@sentry/react": "^5.29.2",
-    "@sentry/tracing": "^5.29.2",
+    "@sentry/tracing": "^6.10.0",
     "@types/enzyme": "^3.10.7",
     "@types/howler": "^2.2.1",
     "@types/node": "^14.11.5",
