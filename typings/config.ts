@@ -24,17 +24,7 @@ interface Debug {
 }
 
 interface General {
-  useDashNumber: boolean;
   useResourceIntegration: boolean;
-}
-
-interface NotificationConfig {
-  horizontal: 'left' | 'center' | 'right';
-  vertical: 'bottom' | 'top';
-}
-
-interface BankConfig {
-  showNotifications: boolean;
 }
 
 interface DatabaseConfig {
@@ -64,13 +54,9 @@ interface PhoneAsItemConfig {
 
 export interface ResourceConfig {
   database: DatabaseConfig;
-  Locale: string;
-  PhoneAsItem: PhoneAsItemConfig;
-  RunRate: number;
+  phoneAsItem: PhoneAsItemConfig;
   twitter: TwitterConfig;
   match: MatchConfig;
-  bank: BankConfig;
-  notificationPosition: NotificationConfig;
   general: General;
   debug: Debug;
   images: ImageConfig;
