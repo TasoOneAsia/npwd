@@ -7,6 +7,8 @@
     "outDir": "./",
     "noImplicitAny": true,
     "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "target": "es6",
     "allowJs": false,
     "lib": ["es2015", "DOM"],

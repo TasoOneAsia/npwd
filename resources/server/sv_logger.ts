@@ -17,7 +17,7 @@ const findLogPath = () => `${path.join(GetResourcePath(GetCurrentResourceName())
 // Initiate the main logger for NPWD
 
 export const mainLogger = winston.createLogger({
-  level: config.debug.level,
+  level: 'info',
   transports: [
     new winston.transports.File({
       filename: findLogPath(),

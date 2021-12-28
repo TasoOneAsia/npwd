@@ -1,10 +1,15 @@
+import 'reflect-metadata';
 import { ResourceConfig } from '../../typings/config';
 import { RewriteFrames } from '@sentry/integrations';
+
+import testController from './test/test.controller';
 // Setup and export config loaded at runtime
+
 export const config: ResourceConfig = JSON.parse(
   LoadResourceFile(GetCurrentResourceName(), 'config.json'),
 );
 
+testController.start();
 // Setup controllers
 import './db/pool';
 import './players/player.controller';
