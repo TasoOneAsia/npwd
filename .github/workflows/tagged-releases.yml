@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Get tag
         run: echo ::set-output name=VERSION_TAG::${GITHUB_REF/refs\/tags\//}
-        id: get_tag
+        id: get_tag_1
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -17,7 +17,7 @@ jobs:
       - name: Bump manifest version
         run: node .github/actions/bump-manifest-version.js
         env:
-          TGT_RELEASE_VERSION: ${{ steps.get_tag.output.VERSION_TAG }}
+          TGT_RELEASE_VERSION: ${{ steps.get_tag_1.output.VERSION_TAG }}
       - name: Push manifest change
         uses: EndBug/add-and-commit@v8
         with:
